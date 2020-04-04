@@ -28,16 +28,25 @@
     //create text for save button 
 
 
-//Date/Time/Month 
-//https://momentjs.com/ 
-    //Not totally sure what's going on here?? 
+//WHEN made to show current date/time for user at the top of the screen 
+//https://momentjs.com/ using the moment function but very confused where it's pulling the data from? 
 
 var when= moment();
 
+//here is jquery dynamically replacing text & formating it for #currentDay ID with moment(); function 
 $("#currentDay").text(when.format("dddd, MMMM Do"));
 
+//Searching for how moment is grabbing data from user
 console.log(window); 
 console.log(when.format("dddd, MMMM do"));
 
+//Saving event when saved button is clicked to button testing on #9 
+function getUserEvent() {
+var nineInput= document.getElementById("9").value; 
 
+document.write("this is a test"); 
+}
+  //retrieve saved values in local storage
+  var saveEvent = localStorage.getItem("event");
+  $(".event-input").text(saveEvent);
 
