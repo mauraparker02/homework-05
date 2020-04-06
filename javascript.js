@@ -40,13 +40,30 @@ $("#currentDay").text(when.format("dddd, MMMM Do"));
 console.log(window); 
 console.log(when.format("dddd, MMMM do"));
 
-//Saving event when saved button is clicked to button testing on #9 
-function getUserEvent() {
-var nineInput= document.getElementById("9").value; 
+//Targetting the section for the userinput 
+var timeTextArea= document.getElementsByClassName("col-8 input")
+console.log(timeTextArea)
 
-document.write("this is a test"); 
+var userEvent; 
+
+if (localStorage.getItem("data")){
+    userEvent = localStorage.getItem("data")
+}else{
+    localStorage.setItem("data", JSON.stringify(timeTextArea));
+    userEvent = localStorage.getItem("data")
 }
-  //retrieve saved values in local storage
-  var saveEvent = localStorage.getItem("event");
-  $(".event-input").text(saveEvent);
+
+//Saving the data in local storage using the save button 
+$('.save').on("click", function() {
+    var userEvent = localStorage.getItem("data") //ls reassigns whatever the data is 
+    console.log(JSON.parse(userEvent))//the computer converts the string of the item in storage back to an object which is stored in the variable ls 
+    userEvent= JSON.parse(userEvent) // then ls is reassigned back to a regular object rather than the string version of the object 
+    userEvent.arr.push('4') //push that into the array index ('4')? 
+    var desiredHour = $('this').attr("col-8 input")  /// we want hour 9 to save
+    userEvent["hour-" + desiredHour] = textInThatHourArea //I am lost here. 
+
+    localStorage.setItem("data", JSON.stringify(timeTextArea)) //then the item is set back into local storage converted into a string and stored within the time block
+
+})
+
 
